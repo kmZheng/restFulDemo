@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.mapper.TstudentMapper">
+
+	<insert id="save" parameterType="com.company.dao.pojo.Tstudent">
+		insert into t_student(studentName,birthday,region) values(#{studentName},#{birthday},#{region})
+	</insert>
+
+	<update id="update" parameterType="com.company.dao.pojo.Tstudent">
+		update t_student set studentName=#{studentName},birthday=#{birthday},region=#{region} where studentId=#{studentId}
+	</update>
+
+	<delete id="delete" parameterType="com.company.dao.pojo.Tstudent">
+		delete from t_student where studentId=#{studentId}
+	</delete>
+
+	<select id="findAll" resultType="com.company.dao.pojo.Tstudent">
+		select studentId,studentName,birthday,region from t_student
+	</select>
+	<select id="findById" parameterType="java.lang.Integer"  resultType="com.company.dao.pojo.Tstudent">
+		select studentId,studentName,birthday,region from t_student where studentId=#{value}
+	</select>
+	<select id="findByName" parameterType="java.lang.String" resultType="com.company.dao.pojo.Tstudent">
+		select studentId,studentName,birthday,region from t_student where studentName like '%${value}%'
+	</select>
+	<select id="findByRegion" parameterType="java.lang.String" resultType="com.company.dao.pojo.Tstudent">
+		select studentId,studentName,birthday,region from t_student where region=#{value}
+	</select>
+	
+	
+</mapper>
